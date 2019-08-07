@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'imagekit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'first.apps.FirstConfig',
+    'photographer.apps.PhotographerConfig',
+    'product.apps.ProductConfig',
+    'mypage.apps.MypageConfig',
 ]
 
 MIDDLEWARE = [

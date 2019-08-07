@@ -18,4 +18,12 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # first에 연결된 url
+    
+    # photographer에 연결된 url
+
+    # product에 연결된 url
+    
+    # mypage에 연결된 url
+
 ]
