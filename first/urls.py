@@ -9,4 +9,6 @@ urlpatterns = [
     path('signout/',views.signout, name="signout"),
     path('confirm/', views.confirm_email, name="confirm_email"),
     path('email_sent/', views.email_sent, name="email_sent"),
+    path('bestphoto/',views.bestphoto, name="bestphoto"),
+    path('recommend/',views.recommend,name="recommend"),
 ]

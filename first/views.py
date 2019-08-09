@@ -134,3 +134,9 @@ def login_next(request, user):
     else:
         send_confirm_mail(user)
         return redirect(reverse('email_sent'))
+
+def bestphoto(request):
+    return render(request,'bestphoto.html')
+
+def recommend(request):
+    return render(request,'recommend.html')
