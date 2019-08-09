@@ -8,7 +8,7 @@ from first.models import User,Writer,EmailConfirm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.conf import settings
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -36,22 +36,45 @@ def like(request):
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
+
 # # 상품등록
 def upload(request):
-    return render(request, 'upload.html')
-# def Upload(request):
-#     if request.method == 'GET':
-#         form = UploadForm(request.POST, request.FILES)
-#         return render(request, ".html", {"form": form})
-#     if request.method == 'POST':
-#         form = UploadForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.photographer = request.user
-#             post.pub_date = timezone.now()
-#             post.save()
-#             return redirect('product_detail', pk=post.pk)
-#     return render(request, '.html')
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            product=form.save(commit=False)
+            product.user = request.user
+            product.save()
+            return redirect('home')
+            # if product.writer != request.user.writer:
+            #     return render(request,"upload.html" ,{"msg":"작가만 등록이 가능합니다."})
+            # else:
+            #     product.save()
+            #     return redirect('home')
+    else:
+        form = UploadForm(request.POST, request.FILES)
+    return render(request, 'upload.html', {'form': form})
+
+    # if request.method == 'GET':
+    #     return render(request, "upload.html")
+    # elif request.method == "POST":
+    #     title = request.POST['title']
+    #     summary = request.POST['summary']
+    #     image = request.FILES['image']
+    #     detail = request.POST['detail']
+    #     options = request.POST['options']
+    #     option_price = request.POST['option_price']
+    #     product = ProductRegistration.objects.create(
+    #         title=title, summary=summary, image=image,
+    #         detail=detail, options=options, option_price=option_price
+    #     )
+    #     if product.user.writer != request.user:
+    #         return render(rqeuest,"upload.html" ,{"msg":"작가만 등록이 가능합니다."})
+    #     else:
+    #         product.save()
+    #         return redirect('home')
+    #     return redirect('home')
+
 
 # # 상품 삭제
 # def remove_product(request, pk):
@@ -73,3 +96,13 @@ def upload(request):
 #     else:
 #         form = UploadForm(instance=product)
 #     return render(request, 'editProduct.html', {'product':product})
+
+def list(request):
+    products = ProductRegistration.objects.all()
+    list = request.GET.get('list')
+    if list:
+        products = products.filter(title__contains = list)
+    paginator = Paginator(products, 9)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, "list.html", {"products":products, "posts":posts})

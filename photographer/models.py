@@ -1,4 +1,5 @@
 from django.db import models
+from first.models import *
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -7,9 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # 상품 등록
 class ProductRegistration(models.Model):
-    photographer = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
     summary = models.CharField(max_length=400)
     image = ProcessedImageField(
         upload_to="images/product",
@@ -26,4 +25,5 @@ class ProductRegistration(models.Model):
             MinValueValidator(0)
         ]
     )
-    location = models.CharField(max_length=300)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #location = models.CharField(max_length=300)

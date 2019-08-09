@@ -47,15 +47,15 @@
         <h1 class='logo'><a href={% url 'home' %}>찍사</a></h1>
         <nav id="nav">
             <ul>
-                <li><a href="{% url 'list' %}">모든상품</a></li>
-                <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
-                <li><a href="{% url 'recommend' %}">추천여행지</a></li>
-                <li><a href="{% url 'enroll' %}">작가 등록하기</a></li>
+                <li><a href="">모든상품</a></li>
+                <li><a href="">이달의 사진</a></li>
+                <li><a href="">추천여행지</a></li>
+                <li><a href="">작가 등록하기</a></li>
                 <li><a href="{% url 'login' %}">로그인/가입</a></li>
-                <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                <li><a href="{% url 'photographer' %}">작가페이지</a></li>
+                <li><a href="">마이페이지</a></li>
+                <li><a href="">작가페이지</a></li>
                 <li><a href="{% url 'upload' %}">상품등록</a></li>
-                <li><a href="{% url 'product' %}">상품페이지</a></li>
+                <li><a href="">상품페이지</a></li>
             </ul>
         </nav>
     </header>
@@ -69,27 +69,29 @@
     <div id="enroll" class="enroll">
 
         <div class="login-clean">
-            <form method="post">
-
-                <div class="form-group" style="height: 85px;">
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{msg}}
+                {{ form.as_p }}
+                <!-- <div class="form-group" style="height: 85px;">
                     <p>상품 타이틀</p>
-                    <input class="form-control" type="text" name="eqip" placeholder="가지고 있는 장비 서술" />
+                    <input class="form-control" type="text" name="title" placeholder="상품 타이틀" />
                 </div>
 
                 <div class="form-group" style="height: 85px;">
                     <p>상품 요약</p>
-                    <input class="form-control" type="text" name="eqip" placeholder="가지고 있는 장비 서술" />
+                    <input class="form-control" type="text" name="summary" placeholder="상품 요약" />
                 </div>
 
 
                 <div class="form-group" style="height: 85px;">
                     <p>샘플 사진</p>
-                    <input type="file" />
+                    <input type="file" name="image" multiple/>
                 </div>
 
                 <div class="form-group" style="height: 200px;">
                     <p>상세 설명</p>
-                    <textarea class="form-control" style="height: 150px;"></textarea>
+                    <textarea class="form-control" name="detail" style="height: 150px;"></textarea>
                 </div>
 
 
@@ -98,13 +100,13 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <input type="text" class="form-control" placeholder="옵션 내용">
+                        <input type="text" class="form-control" name="options" placeholder="옵션 내용">
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" class="form-control" placeholder="옵션가격">
+                        <input type="text" class="form-control" name="option_price" placeholder="옵션가격">
                     </div>
                 </div>
-
+ -->
 
                 <button class="btn btn-primary btn-block" type=" submit">
                     등록요청
