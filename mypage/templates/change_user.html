@@ -1,0 +1,11 @@
+<style>
+
+</style> 
+<form action="{% url 'change_user'  %}" method="POST" >
+{% csrf_token %}
+
+{{ form.as_p }}
+{{form_password}}
+<input c type="submit" value="변경">
+`
+</form>

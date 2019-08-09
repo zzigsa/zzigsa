@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'first.User'
 
 # Application definition
 
@@ -42,7 +43,12 @@ INSTALLED_APPS = [
     'photographer.apps.PhotographerConfig',
     'product.apps.ProductConfig',
     'mypage.apps.MypageConfig',
+    # 'ckeditor',
+    # 'ckeditor_uploader',
+    # 'ckeditor_demo.demo_application',
 ]
+
+CKEDITOR_UPLOAD_PATH="uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +65,7 @@ ROOT_URLCONF = 'zzigsa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +129,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'first','static')
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+from django.urls.base import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+
+# 이메일 전송
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='tyyt0528@likelion.org'
+EMAIL_HOST_PASSWORD='wnsgml0528!'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
