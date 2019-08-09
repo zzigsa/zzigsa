@@ -44,7 +44,7 @@
 
     <!-- Header -->
     <header id="header" class="skel-layers-fixed">
-		<h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
+        <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
                 <li><a href="{% url 'list' %}">모든상품</a></li>
@@ -65,61 +65,37 @@
     </header>
 
 
+
     <div style="margin-top: 4em;">
-        <h1 style="text-align: center; font-size : 4em;">상품등록</h1>
+        <h1 style="text-align: center; font-size : 4em;">이달의 사진</h1>
     </div>
 
     <!-- Two -->
-    <div id="enroll" class="enroll">
+    <div id="bestphoto" class="bestphoto" style="text-align: center;">
+        <img src="{% static 'images/pic025.jpg' %}" width="100%" height="100%"></a>
+    </div>
 
-        <div class="login-clean">
-            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{msg}}
-                {{ form.as_p }}
-                <!-- <div class="form-group" style="height: 85px;">
-                    <p>상품 타이틀</p>
-                    <input class="form-control" type="text" name="title" placeholder="상품 타이틀" />
+
+    <div class="link">
+        <div class="card mb-12">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <a href=""> <img src="{% static 'images/pic01.jpg' %}" class="card-img" alt="..."></a>
                 </div>
-
-                <div class="form-group" style="height: 85px;">
-                    <p>상품 요약</p>
-                    <input class="form-control" type="text" name="summary" placeholder="상품 요약" />
-                </div>
-
-
-                <div class="form-group" style="height: 85px;">
-                    <p>샘플 사진</p>
-                    <input type="file" name="image" multiple/>
-                </div>
-
-                <div class="form-group" style="height: 200px;">
-                    <p>상세 설명</p>
-                    <textarea class="form-control" name="detail" style="height: 150px;"></textarea>
-                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="">
+                            <h2 class="card-title">상품제목</h2>
+                        </a>
+                        <p class="card-text">
+                            상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명
+                        </p>
 
 
-                <button>옵션항목추가</button>
-                <button>옵션항목제거</button>
-
-                <div class="form-row">
-                    <div class="form-group col-md-9">
-                        <input type="text" class="form-control" name="options" placeholder="옵션 내용">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="form-control" name="option_price" placeholder="옵션가격">
                     </div>
                 </div>
- -->
-
-                <button class="btn btn-primary btn-block" type=" submit">
-                    등록요청
-                </button>
-
-
-            </form>
+            </div>
         </div>
-
     </div>
 
 

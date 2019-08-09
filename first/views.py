@@ -17,11 +17,10 @@ from .hash_generator import generate_random_string
 
 #메인(작가페이지 테스트(메인만))
 def home(request):
-    writers = Writer.objects.all()
-    return render(request, "home.html",{"writers":writers})
+    return render(request, "home.html")
 
 #로그인
-def login(request):
+def customer_login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         username = request.POST['username']
@@ -35,7 +34,7 @@ def login(request):
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
         form = LoginForm()
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'customer_login.html', {'form': form})
 
 #회원가입
 def join(request):
@@ -123,7 +122,7 @@ def confirm_email(request):
         email_confirm.save()
         return redirect(reverse('home'))
     except:
-        return render(request, 'login.html')
+        return render(request, 'customer_login.html')
 
 
 #이메일 전송
@@ -134,3 +133,9 @@ def login_next(request, user):
     else:
         send_confirm_mail(user)
         return redirect(reverse('email_sent'))
+
+def bestphoto(request):
+    return render(request, "bestphoto.html")
+
+def recommend(request):
+    return render(request, "recommend.html")

@@ -9,7 +9,6 @@ from .forms import *
 
 # Create your views here.
 #아이디찾기 (비번찾기는 라이브러리 이용)   html안만듬디자인
-@login_required
 def id_find(request):
     if request.method == "POST":
         name = request.POST["user"]
@@ -43,3 +42,19 @@ def change_user(request):
         form_password = ChangePasswordForm(request.user)
         form=UpdateuserForm(instance=request.user)
     return render(request,'change_user.html',{'form':form,"form_password":form_password})
+
+@login_required
+def delete(request,id):
+    user=get_object_or_404(User,pk=id)
+    if user != request.user:
+        return redirect("home")
+    user.delete()
+    return redirect("home")
+
+    
+def favorite(request):
+    writers = Writer.objects.all()
+    return render(request, "favorite.html",{"writers":writers})
+
+def history(request):
+    return render(request,"history.html")

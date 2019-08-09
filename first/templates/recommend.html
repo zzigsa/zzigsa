@@ -9,11 +9,7 @@
 <html>
 
 <head>
-<style>
-        .helptext{
-      visibility: hidden;
-    }
-    </style>
+
     <title>찍사</title>
     <meta property="og:image" content="{% static 'images/banner.jpg' %}">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -51,59 +47,73 @@
         <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
-                    <li><a href="">모든상품</a></li>
-                    <li><a href="">이달의 사진</a></li>
-                    <li><a href="">추천여행지</a></li>
-                    {% if not user.is_authenticated %}  
-                    <li><a href="{% url 'login' %}">로그인/가입</a></li>
-                    {% else %}
-                    <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-                    <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-                    <li><a href="{% url 'upload' %}">작가페이지</a></li>
-                    {% endif %}
-    
-                    
-                    <li><a href="">상품등록</a></li>
-                    <li><a href="">상품페이지</a></li>
+                <li><a href="{% url 'list' %}">모든상품</a></li>
+                <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
+                <li><a href="{% url 'recommend'recommend %}">추천여행지</a></li>
+                {% if not user.is_authenticated %}  
+                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+                {% else %}
+                <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+           
+                {% endif %}
+
+                <li><a href="{% url 'upload' %}">상품등록</a></li>
+                <li><a href="{% url 'list' %}">상품페이지</a></li>
             </ul>
         </nav>
     </header>
 
 
-
     <div style="margin-top: 4em;">
-        <h1 style="text-align: center; font-size : 4em;">로그인</h1>
+        <h1 style="text-align: center; font-size : 4em;">추천여행지</h1>
     </div>
 
-    <!-- Two --><form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!--  
-    <div id="login" class="login">
-        <div class="form-group" style="height: 85px;">
-            <p>ID</p>
-            <input class="form-control" type="text" name="eqip" placeholder="ID" />
-        </div>
-
-
-        <div class="form-group" style="height: 85px;">
-            <p>비밀번호</p>
-            <input class="form-control" type="text" name="eqip" placeholder="비밀번호" />
-        </div>
-        -->
-        <div class="form-group">
-            <button class="btn btn-primary btn-block" type=" submit">
-                로그인
-            </button>
-        </div>
-    </form>
-        <div class="form-group" style="text-align: center">
-            <div><a href="{% url 'join' %}">회원가입</a></div>
-            <div><a href=""> ID/PW 찾기</a></div>
-
-        </div>
+    <!-- Two -->
+    <div id="bestphoto" class="bestphoto" style="text-align: center;">
+        <img src="{% static 'images/pic024.jpg' %}" width="100%" height="100%"></a>
     </div>
 
+    <div class="link">
+        <div class="card mb-5">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <a href=""> <img src="{% static 'images/pic017.jpg' %}" class="card-img" alt="..."></a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="">
+                            <h2 class="card-title">전주상품</h2>
+                        </a>
+                        <p class="card-text">
+                            상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-5">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <a href=""> <img src="{% static 'images/pic018.jpg' %}" class="card-img" alt="..."></a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="">
+                            <h2 class="card-title">전주상품</h2>
+                        </a>
+                        <p class="card-text">
+                            상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer id="footer">

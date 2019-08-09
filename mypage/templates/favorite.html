@@ -47,6 +47,7 @@
 		<h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
 		<nav id="nav">
 			<ul>
+	            
 				<li><a href="{% url 'list' %}">모든상품</a></li>
                 <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
                 <li><a href="{% url 'recommend'recommend %}">추천여행지</a></li>
@@ -72,36 +73,61 @@
 		<div class="container">
 			<div class="row">
 				<div class="4u skel-cell-important">
-						{% if user == people %}
 					<section>
-						<h3>안녕하세요 {{user.name}}님</h3>
+						<h3>안녕하세요 000님</h3>
 
 					</section>
 					<hr />
 					<section>
-						
-				
-						<ul class="alt">
-							<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
-							<div><a href="{% url 'history' %}" class="button alt" style="width: 100%;">구매내역</a></div>
-							<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a></div>
-							<div><a href="{% url 'change_user' %}" class="button alt" style="width: 100%;">개인정보수정</a></div>
-							
-							<div><a href="{% url 'delete' user.id %}" class="button alt" style="width: 100%;"  onclick="return confirm('정말 계정을 삭제하시겠습니까?')">회원탈퇴</a></div>
 
+						<ul class="alt">
+							<ul class="alt">
+								<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
+								<div><a href="" class="button alt" style="width: 100%;">구매내역</a></div>
+								<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a></div>
+								<div><a href="{% url 'change_user' %}" class="button alt" style="width: 100%;">개인정보수정</a></div>
+								
+								<div><a href="{% url 'delete' user.id %}" class="button alt" style="width: 100%;"  onclick="return confirm('정말 계정을 삭제하시겠습니까?')">회원탈퇴</a></div>
+	
+							</ul>
 						</ul>
-						{% endif %}
 					</section>
 				</div>
 				<div class="8u">
 					<section>
-						<div style="border: medium solid #000000;">
-							제목
-						</div>
+						<h3>관심작가</h3>
 						<br>
-						\<div style="border: medium solid #000000; height: 15em;">
-							내용
-						</div>
+						<dl>
+							<dd>    
+								{% for writer in writers %}
+								<div class="card" id="favoritephotograper">
+									<section>
+										<img class="personphoto" height="40%" width="40%"
+											src="{% static 'images/pic01.jpg' %}" alt="">
+										<span style="font-size : 2em; margin-left:1em;">000작가</span>
+									</section>
+								</div>
+							
+								<div style="text-align: end;margin-right:30%;">
+									<a class="btn btn-outline-primary" href="{% url 'photographer' writer.id %}" role="button">작가페이지</a>
+									<a class="btn btn-outline-primary" href="#" role="button">좋아요취소</a>
+								</div>
+								{% endfor %}
+							</dd>
+							<dd>
+								<div class="card" id="favoritephotograper">
+									<section>
+										<img class="personphoto" height="40%" width="40%"
+											src="{% static 'images/pic01.jpg' %}" alt="">
+										<span style="font-size : 2em; margin-left:1em;">000작가</span>
+									</section>
+								</div>
+								<div style="text-align: end;margin-right:30%;">
+									<a class="btn btn-outline-primary" href="#" role="button">작가페이지</a>
+									<a class="btn btn-outline-primary" href="#" role="button">좋아요취소</a>
+								</div>
+							</dd>
+						</dl>
 					</section>
 				</div>
 			</div>

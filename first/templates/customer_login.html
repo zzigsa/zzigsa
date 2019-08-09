@@ -9,7 +9,11 @@
 <html>
 
 <head>
-
+<style>
+        .helptext{
+      visibility: hidden;
+    }
+    </style>
     <title>찍사</title>
     <meta property="og:image" content="{% static 'images/banner.jpg' %}">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -44,7 +48,7 @@
 
     <!-- Header -->
     <header id="header" class="skel-layers-fixed">
-		<h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
+        <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
                 <li><a href="{% url 'list' %}">모든상품</a></li>
@@ -65,61 +69,38 @@
     </header>
 
 
+
     <div style="margin-top: 4em;">
-        <h1 style="text-align: center; font-size : 4em;">상품등록</h1>
+        <h1 style="text-align: center; font-size : 4em;">로그인</h1>
     </div>
 
-    <!-- Two -->
-    <div id="enroll" class="enroll">
-
-        <div class="login-clean">
-            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{msg}}
-                {{ form.as_p }}
-                <!-- <div class="form-group" style="height: 85px;">
-                    <p>상품 타이틀</p>
-                    <input class="form-control" type="text" name="title" placeholder="상품 타이틀" />
-                </div>
-
-                <div class="form-group" style="height: 85px;">
-                    <p>상품 요약</p>
-                    <input class="form-control" type="text" name="summary" placeholder="상품 요약" />
-                </div>
-
-
-                <div class="form-group" style="height: 85px;">
-                    <p>샘플 사진</p>
-                    <input type="file" name="image" multiple/>
-                </div>
-
-                <div class="form-group" style="height: 200px;">
-                    <p>상세 설명</p>
-                    <textarea class="form-control" name="detail" style="height: 150px;"></textarea>
-                </div>
-
-
-                <button>옵션항목추가</button>
-                <button>옵션항목제거</button>
-
-                <div class="form-row">
-                    <div class="form-group col-md-9">
-                        <input type="text" class="form-control" name="options" placeholder="옵션 내용">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="form-control" name="option_price" placeholder="옵션가격">
-                    </div>
-                </div>
- -->
-
-                <button class="btn btn-primary btn-block" type=" submit">
-                    등록요청
-                </button>
-
-
-            </form>
+    <!-- Two --><form method="POST" action="{% url 'customer_login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!--  
+    <div id="login" class="login">
+        <div class="form-group" style="height: 85px;">
+            <p>ID</p>
+            <input class="form-control" type="text" name="eqip" placeholder="ID" />
         </div>
 
+
+        <div class="form-group" style="height: 85px;">
+            <p>비밀번호</p>
+            <input class="form-control" type="text" name="eqip" placeholder="비밀번호" />
+        </div>
+        -->
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type=" submit">
+                로그인
+            </button>
+        </div>
+    </form>
+        <div class="form-group" style="text-align: center">
+            <div><a href="{% url 'join' %}">회원가입</a></div>
+            <div><a href="{% url 'id_find' %}"> ID찾기</a><a href="{% url 'password_reset' %}"> PW찾기</a></div>
+
+        </div>
     </div>
 
 

@@ -106,3 +106,6 @@ def list(request):
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request, "list.html", {"products":products, "posts":posts})
+
+def photographeredit(requset):
+    return render(request,"photographeredit.html")
