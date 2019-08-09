@@ -135,7 +135,14 @@ def login_next(request, user):
         return redirect(reverse('email_sent'))
 
 def bestphoto(request):
+<<<<<<< HEAD
     return render(request, "bestphoto.html")
 
 def recommend(request):
     return render(request, "recommend.html")
+=======
+    return render(request,'bestphoto.html')
+
+def recommend(request):
+    return render(request,'recommend.html')
+>>>>>>> 82f4b21d96c5f5d204b295379410cdd20b705d30
