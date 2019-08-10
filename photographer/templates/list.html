@@ -48,31 +48,18 @@
         <nav id="nav">
             <ul>
                 <li><a href="{% url 'list' %}">모든상품</a></li>
-<<<<<<< HEAD
-                <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
-                <li><a href="{% url 'recommend'recommend %}">추천여행지</a></li>
-=======
                 <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
                 <li><a href="{% url 'recommend' %}">추천여행지</a></li>
->>>>>>> 82f4b21d96c5f5d204b295379410cdd20b705d30
                 {% if not user.is_authenticated %}  
                 <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
                 {% else %}
                 <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
                 <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-<<<<<<< HEAD
-           
-                {% endif %}
-
-                <li><a href="{% url 'upload' %}">상품등록</a></li>
-                <li><a href="{% url 'list' %}">상품페이지</a></li>
-=======
                 <li><a href="{% url 'photographer' writer.id %}">작가페이지</a></li>
                 {% endif %}
 
                 
                 <li><a href="{% url 'upload' %}">상품등록</a></li>
->>>>>>> 82f4b21d96c5f5d204b295379410cdd20b705d30
             </ul>
         </nav>
     </header>
