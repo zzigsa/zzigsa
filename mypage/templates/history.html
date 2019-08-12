@@ -48,18 +48,18 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="{% url 'list' %}">모든상품</a></li>
-                <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
-                <li><a href="{% url 'recommend' %}">추천여행지</a></li>
+                <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
+                <li><a href="{% url 'recommend'recommend %}">추천여행지</a></li>
                 {% if not user.is_authenticated %}  
-                <li><a href="{% url 'login' %}">로그인/가입</a></li>
+                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
                 {% else %}
                 <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-				<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-				<li><a href="{% url 'photographer' writer.id %}">작가페이지</a></li>
+                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+           
                 {% endif %}
 
-                
                 <li><a href="{% url 'upload' %}">상품등록</a></li>
+                <li><a href="{% url 'list' %}">상품페이지</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -72,35 +72,77 @@
 		<div class="container">
 			<div class="row">
 				<div class="4u skel-cell-important">
-						{% if user == people %}
 					<section>
-						<h3>안녕하세요 {{user.name}}님</h3>
+						<h3>안녕하세요 000님</h3>
 
 					</section>
 					<hr />
 					<section>
-						
-				
+
 						<ul class="alt">
-							<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
+							<ul class="alt">
+								<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
 							<div><a href="{% url 'history' %}" class="button alt" style="width: 100%;">구매내역</a></div>
 							<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a></div>
 							<div><a href="{% url 'change_user' %}" class="button alt" style="width: 100%;">개인정보수정</a></div>
 							
 							<div><a href="{% url 'delete' user.id %}" class="button alt" style="width: 100%;"  onclick="return confirm('정말 계정을 삭제하시겠습니까?')">회원탈퇴</a></div>
 
+							</ul>
 						</ul>
-						{% endif %}
 					</section>
 				</div>
 				<div class="8u">
 					<section>
-						<div style="border: medium solid #000000;">
-							제목
-						</div>
+						<h3>구매내역</h3>
 						<br>
-						\<div style="border: medium solid #000000; height: 15em;">
-							내용
+						<div>
+							<div class="card-group">
+								<div class="card">
+									<img id="mycard" src="{% static 'images/pic01.jpg' %}" class="card-img-top"
+										alt="...">
+									<div class="card-body">
+										<h5 class="card-title">상품타이틀</h5>
+										<p class="card-text">상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약
+										</p>
+									</div>
+									<div class="card-footer">
+										<div style="text-align: end;">
+											<a class="btn btn-outline-primary" id="review" href="#"
+												role="button"><small>리뷰쓰기</small></a>
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<img id="mycard" src="{% static 'images/pic02.jpg' %}" class="card-img-top"
+										alt="...">
+									<div class="card-body">
+										<h5 class="card-title">상품타이틀</h5>
+										<p class="card-text">상품요약상품요약상품요약상품요약상품요약</p>
+									</div>
+									<div class="card-footer">
+										<div style="text-align: end;">
+											<a class="btn btn-outline-primary" id="review" href="#"
+												role="button"><small>리뷰쓰기</small></a>
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<img id="mycard" src="{% static 'images/pic03.jpg' %}" class="card-img-top"
+										alt="...">
+									<div class="card-body">
+										<h5 class="card-title">상품타이틀</h5>
+										<p class="card-text">상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약상품요약</p>
+									</div>
+									<div class="card-footer">
+										<div style="text-align: end;">
+											<a class="btn btn-outline-primary" id="review" href="#"
+												role="button"><small>리뷰쓰기</small></a>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</section>
 				</div>

@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'photographer.apps.PhotographerConfig',
     'product.apps.ProductConfig',
     'mypage.apps.MypageConfig',
-    # 'ckeditor',
-    # 'ckeditor_uploader',
-    # 'ckeditor_demo.demo_application',
+    'ckeditor',
+    'ckeditor_uploader',
+    'ckeditor_demo.demo_application',
 ]
 
 CKEDITOR_UPLOAD_PATH="uploads/"

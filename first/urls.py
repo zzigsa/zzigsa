@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path,include
 
 from .import views
 
 urlpatterns = [
-    path('login/',views.login, name="login"),
+    path('customer_login/',views.customer_login, name="customer_login"),
     path('join/',views.join, name="join"),
     path('enroll/<int:id>',views.enroll, name="enroll"),    
     path('signout/',views.signout, name="signout"),

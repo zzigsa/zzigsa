@@ -74,7 +74,7 @@
         <h1 style="text-align: center; font-size : 4em;">로그인</h1>
     </div>
 
-    <!-- Two --><form method="POST" action="{% url 'login' %}">
+    <!-- Two --><form method="POST" action="{% url 'customer_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <!--  
@@ -98,7 +98,7 @@
     </form>
         <div class="form-group" style="text-align: center">
             <div><a href="{% url 'join' %}">회원가입</a></div>
-            <div><a href=""> ID/PW 찾기</a></div>
+            <div><a href="{% url 'id_find' %}"> ID찾기</a><a href="{% url 'password_reset' %}"> PW찾기</a></div>
 
         </div>
     </div>

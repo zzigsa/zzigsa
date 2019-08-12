@@ -27,3 +27,6 @@ class ProductRegistration(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #location = models.CharField(max_length=300)
+    class Meta:
+        ordering=['-id']
+    
