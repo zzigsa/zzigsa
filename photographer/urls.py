@@ -8,5 +8,5 @@ urlpatterns = [
     path('uploadproduct/', views.upload, name="upload"),
     path('list/',views.list, name="list"),
     # path('list/', views.upload, name="list"),
-    path('photographeredit/',views.photographeredit, name="photographeredit"),
+    path('photographeredit/', views.photographeredit, name="photographeredit"),
 ]
