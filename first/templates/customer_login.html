@@ -55,7 +55,7 @@
                     <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
                     <li><a href="{% url 'recommend' %}">추천여행지</a></li>
                     {% if not user.is_authenticated %}  
-                    <li><a href="{% url 'login' %}">로그인/가입</a></li>
+                    <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
                     {% else %}
                     <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
                     <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
@@ -98,7 +98,7 @@
     </form>
         <div class="form-group" style="text-align: center">
             <div><a href="{% url 'join' %}">회원가입</a></div>
-            <div><a href="{% url 'id_find' %}"> ID찾기</a><a href="{% url 'password_reset' %}"> PW찾기</a></div>
+            <div><a href="{% url 'id_find' %}"> ID찾기</a><a href=""> PW찾기</a></div>
 
         </div>
     </div>

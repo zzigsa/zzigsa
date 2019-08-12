@@ -75,28 +75,6 @@ def upload(request):
     #         return redirect('home')
     #     return redirect('home')
 
-
-# # 상품 삭제
-# def remove_product(request, pk):
-#     product = ProductRegistration.objects.get(pk=pk)
-#     product.delete()
-#     return redirect('/')
-
-# # 상품 수정
-# def edit_product(request, pk):
-#     product = get_object_of_404(ProductRegistration, pk=pk)
-#     if request.method == 'POST':
-#         form = UploadForm(instance=product)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.photographer = request.user
-#             post.pub_date = timezone.now()
-#             post.save()
-#             return redirect('product_detail', pk=post.pk)
-#     else:
-#         form = UploadForm(instance=product)
-#     return render(request, 'editProduct.html', {'product':product})
-
 def list(request):
     products = ProductRegistration.objects.all()
     list = request.GET.get('list')
