@@ -55,8 +55,10 @@
                 {% else %}
                 <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
 				<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+				{% for writer in writers %}
 				<li><a href="{% url 'photographer' writer.id %}">작가페이지</a></li>
-                {% endif %}
+                {% endfor %}
+				{% endif %}
 
                 
                 <li><a href="{% url 'upload' %}">상품등록</a></li>
