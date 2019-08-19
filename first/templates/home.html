@@ -42,31 +42,37 @@
 
 <body id="top">
 
-    <!-- Header -->  
+    <!-- Header -->
 
     <header id="header" class="skel-layers-fixed">
         <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
-                
+
                 <li><a href="{% url 'list' %}">모든상품</a></li>
                 <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
                 <li><a href="{% url 'recommend' %}">추천여행지</a></li>
-                {% if not user.is_authenticated %}  
+                {% if not user.is_authenticated %}
                 <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
                 {% else %}
                 <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
                 <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-           
+                <li>
+                    <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                    <form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
+                        {% csrf_token %} <input type="hidden" />
+                    </form>
+                </li>
                 {% endif %}
-
                 <li><a href="{% url 'upload' %}">상품등록</a></li>
+
             </ul>
         </nav>
     </header>
 
     <!-- Banner -->
     <section id="banner">
+
         <div class="inner">
             <h2>인생샷 찍어줄 사진작가 찾기</h2>
             <form class="banner-form" method="post" action="#">
@@ -90,7 +96,8 @@
             <div class="row">
                 <div class="6u">
                     <section class="special">
-                        <a href="{% url 'bestphoto' %}" class="image fit"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+                        <a href="{% url 'bestphoto' %}" class="image fit"><img src="{% static 'images/pic01.jpg' %}"
+                                alt="" /></a>
                         <h3>이달의 사진</h3>
                         <p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing
                             cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam
@@ -103,7 +110,8 @@
                 </div>
                 <div class="6u">
                     <section class="special">
-                        <a href="{% url 'recommend' %}" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+                        <a href="{% url 'recommend' %}" class="image fit"><img src="{% static 'images/pic02.jpg' %}"
+                                alt="" /></a>
                         <h3>추천 여행지</h3>
                         <p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing
                             cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam

@@ -9,10 +9,10 @@
 <html>
 
 <head>
-<style>
-        .helptext{
-      visibility: hidden;
-    }
+    <style>
+        .helptext {
+            visibility: hidden;
+        }
     </style>
     <title>찍사</title>
     <meta property="og:image" content="{% static 'images/banner.jpg' %}">
@@ -51,19 +51,23 @@
         <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
-                    <li><a href="{% url 'list' %}">모든상품</a></li>
-                    <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
-                    <li><a href="{% url 'recommend' %}">추천여행지</a></li>
-                    {% if not user.is_authenticated %}  
-                    <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
-                    {% else %}
-                    <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-                    <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-                    <li><a href="{% url 'upload' %}">작가페이지</a></li>
-                    {% endif %}
-    
-                    
-                    <li><a href="{% url 'upload' %}">상품등록</a></li>
+
+                <li><a href="{% url 'list' %}">모든상품</a></li>
+                <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
+                <li><a href="{% url 'recommend' %}">추천여행지</a></li>
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+                {% else %}
+                <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+                <li>
+                    <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                    <form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
+                        {% csrf_token %} <input type="hidden" />
+                    </form>
+                </li>
+                {% endif %}
+                <li><a href="{% url 'upload' %}">상품등록</a></li>
             </ul>
         </nav>
     </header>
@@ -74,7 +78,8 @@
         <h1 style="text-align: center; font-size : 4em;">로그인</h1>
     </div>
 
-    <!-- Two --><form method="POST" action="{% url 'customer_login' %}">
+    <!-- Two -->
+    <form method="POST" action="{% url 'customer_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <!--  
@@ -96,11 +101,11 @@
             </button>
         </div>
     </form>
-        <div class="form-group" style="text-align: center">
-            <div><a href="{% url 'join' %}">회원가입</a></div>
-            <div><a href="{% url 'id_find' %}"> ID찾기</a><a href=""> PW찾기</a></div>
+    <div class="form-group" style="text-align: center">
+        <div><a href="{% url 'join' %}">회원가입</a></div>
+        <div><a href="{% url 'id_find' %}"> ID찾기</a><a href=""> PW찾기</a></div>
 
-        </div>
+    </div>
     </div>
 
 

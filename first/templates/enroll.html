@@ -47,21 +47,23 @@
         <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
-                    <li><a href="{% url 'list' %}">모든상품</a></li>
-                    <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
-                    <li><a href="{% url 'recommend' %}">추천여행지</a></li>
-                    {% if not user.is_authenticated %}  
-                    <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
-                    {% else %}
-                    <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-                    <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-                    {% for writer in writers %}
-                    <li><a href="{% url 'photographer' %}">작가페이지</a></li>
-                    {% endfor %}
-                    {% endif %}
-    
-                    
-                    <li><a href="{% url 'upload' %}">상품등록</a></li>
+
+                <li><a href="{% url 'list' %}">모든상품</a></li>
+                <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
+                <li><a href="{% url 'recommend' %}">추천여행지</a></li>
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+                {% else %}
+                <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+                <li>
+                    <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                    <form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
+                        {% csrf_token %} <input type="hidden" />
+                    </form>
+                </li>
+                {% endif %}
+                <li><a href="{% url 'upload' %}">상품등록</a></li>
             </ul>
         </nav>
     </header>
@@ -72,20 +74,20 @@
     <form action="{% url 'enroll' user.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-    <!-- Two -->
-    <div id="enroll" class="enroll">
+        <!-- Two -->
+        <div id="enroll" class="enroll">
 
-        <div class="login-clean">
+            <div class="login-clean">
 
                 <div class="form-group" style="height: 85px;">
                     <p>프로필 사진</p>
-                    <input type="file"  name="profile_image"/>
+                    <input type="file" name="profile_image" />
                 </div>
 
 
                 <div class="form-group" style="height: 85px;">
                     <p>촬영 사진</p>
-                    <input type="file" name="image" multiple/>
+                    <input type="file" name="image" multiple />
                 </div>
 
                 <div class="form-group" style="height: 85px;">
@@ -95,13 +97,13 @@
 
                 <div class="form-group" style="height: 85px;">
                     <p>장비 사진</p>
-                    <input type="file"  name="camera_image"/>
+                    <input type="file" name="camera_image" />
                 </div>
 
 
                 <div class="form-group" style="height: 85px;">
                     <p>SNS 주소(선택)</p>
-                    <input class="form-control" type="url"  name="sns_email" placeholder="SNS 주소" />
+                    <input class="form-control" type="url" name="sns_email" placeholder="SNS 주소" />
                 </div>
 
                 <div class="form-group" style="height: 200px;">
@@ -113,10 +115,10 @@
                         등록 요청
                     </button>
                 </div>
-        </div>
+            </div>
 
-    </div>
-</form>
+        </div>
+    </form>
 
     <!-- Footer -->
     <footer id="footer">
