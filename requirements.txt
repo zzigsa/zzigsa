@@ -7,6 +7,7 @@ django-appconf==1.0.3
 django-ckeditor==5.7.1
 django-imagekit==4.0.2
 django-js-asset==1.2.2
+django-summernote==0.8.11.4
 idna==2.8
 oauthlib==3.1.0
 pilkit==2.0
