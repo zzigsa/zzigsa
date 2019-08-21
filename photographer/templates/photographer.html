@@ -1,0 +1,256 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+
+	<title>찍사</title>
+	<meta property="og:image" content="{% static 'images/banner.jpg' %}">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/skel.min.js' %}"></script>
+	<script src="{% static 'js/skel-layers.min.js' %}"></script>
+	<script src="{% static 'js/init.js' %}"></script>
+
+	<noscript>
+		<link rel="stylesheet" href="{% static 'css/skel.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style-xlarge.css' %}" />
+	</noscript>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+</head>
+
+<body id="top">
+
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
+		<nav id="nav">
+			<ul>
+					<li><a href="{% url 'list' %}">모든상품</a></li>
+					<li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
+                	<li><a href="{% url 'recommend' %}">추천여행지</a></li>
+					{% if not user.is_authenticated %}  
+					<li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+					{% else %}
+					<li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+					<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+					<li><a href="{% url 'photographer' writer.id %}">작가페이지</a></li>
+					{% endif %}
+	
+					
+					<li><a href="{% url 'upload' %}">상품등록</a></li>
+					<li><a href="">상품페이지</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Main -->
+	<section id="main" class="wrapper style1">
+		<header class="major">
+			<h1 style="text-align: center; font-size : 4em;">작가페이지</h1>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="8u">
+					<section>
+						<div>
+							<h2>자기소개</h2>
+							<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien
+								blandit
+								ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis
+								phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor.
+								Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia
+								interdum
+								massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc
+								adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet
+								accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis
+								adipiscing semper ornare pellentesque.</p>
+							<p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis.
+								Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at.
+								Aliquet
+								lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In
+								amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo
+								col.
+								Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet
+								blandit
+								adipiscing arcu ante.</p>
+						</div>
+					</section>
+				</div>
+				<div class="4u skel-cell-important">
+					<section>
+						<img class="personphoto" height="40%" width="40%" src="{% static 'images/pic01.jpg' %}" alt="">
+						<span style="font-size : 2em; margin-left:1em;">000작가</span>
+
+        {% if user in writer.like_user_set.all %}
+        <input type="button" class="like liked" name="{{ writer.id }}">
+       {% else %}
+            <input type="button" class="like unlike" name="{{ writer.id }}" >
+       {% endif %}
+   
+    <p class="like-count" id="count-{{ writer.id }}">좋아요 {{ writer.like_count }}개</p>
+					
+
+					</section>
+					<hr />
+
+				</div>
+			</div>
+			<hr class="major" />
+			<div class="row">
+				<div class="12u">
+					<section class="special">
+						<div class="card mb-5">
+							<div class="row no-gutters">
+								<div class="col-md-4">
+									<a href=""> <img src="{% static 'images/pic01.jpg' %}" class="card-img"
+											alt="..."></a>
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<a href="">
+											<h2 class="card-title">상품제목</h2>
+										</a>
+										<p class="card-text">
+											상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명
+										</p>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="12u">
+					<section class="special">
+						<div class="card mb-5">
+							<div class="row no-gutters">
+								<div class="col-md-4">
+									<a href=""> <img src="{% static 'images/pic01.jpg' %}" class="card-img"
+											alt="..."></a>
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<a href="">
+											<h2 class="card-title">상품제목</h2>
+										</a>
+										<p class="card-text">
+											상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명상품요약설명
+										</p>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row double">
+				<div class="6u">
+					<div class="row collapse-at-2">
+						<div class="6u">
+							<h3>Accumsan</h3>
+							<ul class="alt">
+								<li><a href="#">Nascetur nunc varius</a></li>
+								<li><a href="#">Vis faucibus sed tempor</a></li>
+								<li><a href="#">Massa amet lobortis vel</a></li>
+								<li><a href="#">Nascetur nunc varius</a></li>
+							</ul>
+						</div>
+						<div class="6u">
+							<h3>Faucibus</h3>
+							<ul class="alt">
+								<li><a href="#">Nascetur nunc varius</a></li>
+								<li><a href="#">Vis faucibus sed tempor</a></li>
+								<li><a href="#">Massa amet lobortis vel</a></li>
+								<li><a href="#">Nascetur nunc varius</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="6u">
+					<h2>Aliquam Interdum</h2>
+					<p>Blandit nunc tempor lobortis nunc non. Mi accumsan. Justo aliquet massa adipiscing cubilia eu
+						accumsan id. Arcu accumsan faucibus vis ultricies adipiscing ornare ut. Mi accumsan justo
+						aliquet.</p>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<ul class="copyright">
+				<li>&copy; Untitled. All rights reserved.</li>
+				<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+				<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+			</ul>
+		</div>
+	</footer>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).on('click', '.like', function(){
+	var pk = $(this).attr('name');
+	$.ajax({ 
+	 type: "POST", 
+	 url: "{% url 'like' %}", 
+	 data: {
+	   'pk': pk, 
+	   'csrfmiddlewaretoken': '{{ csrf_token }}'
+	 }, 
+	 dataType: "json", 
+	 success: function(response){
+	   alert(response.message);
+	   $("#count-"+pk).html("좋아요 "+response.like_count+"개");
+	   var users = $(pk).text();
+	   if(users.indexOf(response.username) != -1){
+		 $("input.like[name="+pk+"]").toggleClass('liked unlike');
+	   }else{
+		 $("input.like[name="+pk+"]").toggleClass('unlike liked');
+	   }
+	 },
+	});
+	});
+	
+	
+	</script>
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+
+	<title>찍사</title>
+	<meta property="og:image" content="{% static 'images/banner.jpg' %}">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/skel.min.js' %}"></script>
+	<script src="{% static 'js/skel-layers.min.js' %}"></script>
+	<script src="{% static 'js/init.js' %}"></script>
+
+	<noscript>
+		<link rel="stylesheet" href="{% static 'css/skel.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style-xlarge.css' %}" />
+	</noscript>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+</head>
+
+<body id="top">
+
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1 class='logo'><a href={% url 'home' %}>찍사</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="{% url 'list' %}">모든상품</a></li>
+                <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
+                <li><a href="{% url 'recommend'recommend %}">추천여행지</a></li>
+                {% if not user.is_authenticated %}  
+                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+                {% else %}
+                <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+           
+                {% endif %}
+
+                <li><a href="{% url 'upload' %}">상품등록</a></li>
+                <li><a href="{% url 'list' %}">상품페이지</a></li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<div style="margin-top: 4em;">
+		<h1 style="text-align: center; font-size : 4em;">작가프로필 수정</h1>
+	</div>
+
+	<!-- Two -->
+	<div id="enroll" class="enroll">
+
+		<div class="login-clean">
+			<form method="post">
+
+				<div class="form-group" style="height: 85px;">
+					<p>프로필 사진</p>
+					<input type="file" />
+				</div>
+
+				<div class="form-group" style="height: 85px;">
+					<p>인스타그램 주소(선택)</p>
+					<input class="form-control" type="url" name="SNS_URL" placeholder="디비에서 가져온값" />
+				</div>
+
+				<div class="form-group" style="height: 200px;">
+					<p>자기소개</p>
+					<h3>에디터가져오기</h3>
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-primary btn-block" type=" submit">
+						수정하기
+					</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row double">
+				<div class="20u">
+					<div class="row collapse-at-3">
+						<div class="19u">
+							<ul class="alt">
+								<li><a href="#">주식회사 Bee | 대표 : 공필상 | gofeel8@likelion.org</a></li>
+								<li><a href="#">주소 : 전라북도 금암5길 17 | 사업자등록번호 : 123-45-6789 | 대표번호 : 010-4923-0847</a>
+								</li>
+								<li><a href="#">문의 : 카카오톡 플러스 친구 '찍사'</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<div class="2u">
+
+					<ul class="icons">
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<ul class="copyright">
+				<li>&copy;Bee</li>
+				<li>이용약관</li>
+				<li>개인정보처리방침</li>
+				<li>사업자정보확인</li>
+			</ul>
+		</div>
+	</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<p>ID 찾기</p>
+<form action="{% url 'id_find' %}" method="POST">
+    {% csrf_token %}
+    {{msg}}
+<br>
+이름:<input type="text" name="user"><br>
+이메일:<input type="email" name="email"><br>
+<input type="submit" value="ID찾기">
+<input type="button" value="뒤로가기" onclick=location.href="{% url 'home' %}">
+{% for user in find_username %}<br>
+찾는 ID: {{ user.username }}<br>
+{% endfor %}
+</form>
+
+
