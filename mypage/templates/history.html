@@ -87,7 +87,9 @@
 
 						<ul class="alt">
 							<ul class="alt">
-								<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
+								<div><a href="{% url 'mypage' user.id%}" class="button alt"
+										style="width: 100%;">예약상황</a>
+								</div>
 								<div><a href="{% url 'history' %}" class="button alt" style="width: 100%;">구매내역</a>
 								</div>
 								<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a>

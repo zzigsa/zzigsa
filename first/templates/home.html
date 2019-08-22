@@ -82,7 +82,8 @@
                     <option value="photographer">작가</option>
                     <option value="hash">해시태그</option>
                 </select>
-                <input type="text" class="form-control" id="email" placeholder="검색어를 입력해주세요" name="email" required="">
+                <input type="text" class="form-control" id="email" placeholder="검색 기능은 아직 미완성입니다ㅜ" name="email"
+                    required="">
                 <button type="submit" class="btn btn-default"><a href="{% url 'haystack_search' %}">검색</a></button>
             </form>
         </div>
@@ -105,7 +106,7 @@
                             arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam
                             lorem.</p>
                         <ul class="actions">
-                            <li><a href="#" class="button alt">자세히 보기</a></li>
+                            <li><a href="{% url 'bestphoto' %}" class="button alt">자세히 보기</a></li>
                         </ul>
                     </section>
                 </div>
@@ -119,7 +120,7 @@
                             arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam
                             lorem.</p>
                         <ul class="actions">
-                            <li><a href="#" class="button alt">자세히 보기</a></li>
+                            <li><a href="{% url 'recommend' %}" class="button alt">자세히 보기</a></li>
                         </ul>
                     </section>
                 </div>
