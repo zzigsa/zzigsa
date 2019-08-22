@@ -47,7 +47,6 @@
         <h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
         <nav id="nav">
             <ul>
-
                 <li><a href="{% url 'list' %}">모든상품</a></li>
                 <li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
                 <li><a href="{% url 'recommend' %}">추천여행지</a></li>
@@ -55,7 +54,11 @@
                 <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
                 {% else %}
                 <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+                {% if user.is_writer%}
+                <li><a href="{% url 'upload' user.id %}">상품등록</a></li>
+                {% else %}
                 <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+                {% endif %}
                 <li>
                     <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                     <form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
@@ -63,9 +66,6 @@
                     </form>
                 </li>
                 {% endif %}
-                <li><a href="{% url 'upload' %}">상품등록</a></li>
-
-                <li><a href="{% url 'upload' %}">상품등록</a></li>
             </ul>
         </nav>
     </header>
@@ -109,7 +109,7 @@
 
     <div class="col-md-4">
         <div class="card" style="margin-top:2rem;width: 18rem;">
-            <img src="{% static 'images/pic01.jpg' %}" class="card-img-top" alt="...">
+            <img src="/media/{{product.image}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <a href="">
                     <h5 class="card-title">상품 제목:{{product.title}}</h5>
@@ -119,9 +119,9 @@
                 </p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">작가:{{product.user.name}}</li>
-                <li class="list-group-item">가격대:{{product.option_price}} ~</li>
-                <li class="list-group-item">평점및리뷰수</li>
+                <li class="list-group-item">작가:{{product.writerid}}</li>
+                <li class="list-group-item">가격:{{product.option_price}} 원</li>
+                <!-- <li class="list-group-item">평점및리뷰수</li> -->
             </ul>
 
         </div>

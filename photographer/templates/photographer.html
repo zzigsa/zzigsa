@@ -47,20 +47,25 @@
 		<h1 class='logo'><a href="{% url 'home' %}">찍사</a></h1>
 		<nav id="nav">
 			<ul>
-					<li><a href="{% url 'list' %}">모든상품</a></li>
-					<li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
-                	<li><a href="{% url 'recommend' %}">추천여행지</a></li>
-					{% if not user.is_authenticated %}  
-					<li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
-					{% else %}
-					<li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-					<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-					<li><a href="{% url 'photographer' writer.id %}">작가페이지</a></li>
-					{% endif %}
-	
-					
-					<li><a href="{% url 'upload' %}">상품등록</a></li>
-					<li><a href="">상품페이지</a></li>
+				<li><a href="{% url 'list' %}">모든상품</a></li>
+				<li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
+				<li><a href="{% url 'recommend' %}">추천여행지</a></li>
+				{% if not user.is_authenticated %}
+				<li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+				{% else %}
+				<li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+				{% if user.is_writer%}
+				<li><a href="{% url 'upload' user.id %}">상품등록</a></li>
+				{% else %}
+				<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+				{% endif %}
+				<li>
+					<a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+					<form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
+						{% csrf_token %} <input type="hidden" />
+					</form>
+				</li>
+				{% endif %}
 			</ul>
 		</nav>
 	</header>
@@ -103,14 +108,14 @@
 						<img class="personphoto" height="40%" width="40%" src="{% static 'images/pic01.jpg' %}" alt="">
 						<span style="font-size : 2em; margin-left:1em;">000작가</span>
 
-        {% if user in writer.like_user_set.all %}
-        <input type="button" class="like liked" name="{{ writer.id }}">
-       {% else %}
-            <input type="button" class="like unlike" name="{{ writer.id }}" >
-       {% endif %}
-   
-    <p class="like-count" id="count-{{ writer.id }}">좋아요 {{ writer.like_count }}개</p>
-					
+						{% if user in writer.like_user_set.all %}
+						<input type="button" class="like liked" name="{{ writer.id }}">
+						{% else %}
+						<input type="button" class="like unlike" name="{{ writer.id }}">
+						{% endif %}
+
+						<p class="like-count" id="count-{{ writer.id }}">좋아요 {{ writer.like_count }}개</p>
+
 
 					</section>
 					<hr />
@@ -225,30 +230,28 @@
 	</footer>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
-	$(document).on('click', '.like', function(){
-	var pk = $(this).attr('name');
-	$.ajax({ 
-	 type: "POST", 
-	 url: "{% url 'like' %}", 
-	 data: {
-	   'pk': pk, 
-	   'csrfmiddlewaretoken': '{{ csrf_token }}'
-	 }, 
-	 dataType: "json", 
-	 success: function(response){
-	   alert(response.message);
-	   $("#count-"+pk).html("좋아요 "+response.like_count+"개");
-	   var users = $(pk).text();
-	   if(users.indexOf(response.username) != -1){
-		 $("input.like[name="+pk+"]").toggleClass('liked unlike');
-	   }else{
-		 $("input.like[name="+pk+"]").toggleClass('unlike liked');
-	   }
-	 },
-	});
-	});
-	
-	
+		$(document).on('click', '.like', function () {
+			var pk = $(this).attr('name');
+			$.ajax({
+				type: "POST",
+				url: "{% url 'like' %}",
+				data: {
+					'pk': pk,
+					'csrfmiddlewaretoken': '{{ csrf_token }}'
+				},
+				dataType: "json",
+				success: function (response) {
+					alert(response.message);
+					$("#count-" + pk).html("좋아요 " + response.like_count + "개");
+					var users = $(pk).text();
+					if (users.indexOf(response.username) != -1) {
+						$("input.like[name=" + pk + "]").toggleClass('liked unlike');
+					} else {
+						$("input.like[name=" + pk + "]").toggleClass('unlike liked');
+					}
+				},
+			});
+		});
 	</script>
 	</script>
 </body>

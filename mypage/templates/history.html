@@ -48,18 +48,24 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="{% url 'list' %}">모든상품</a></li>
-                <li><a href="{% url 'bestphoto' %}" >이달의 사진</a></li>
-                <li><a href="{% url 'recommend' %}">추천여행지</a></li>
-                {% if not user.is_authenticated %}  
-                <li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
-                {% else %}
-                <li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
-                <li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
-           
-                {% endif %}
-
-                <li><a href="{% url 'upload' %}">상품등록</a></li>
-                <li><a href="{% url 'list' %}">상품페이지</a></li>
+				<li><a href="{% url 'bestphoto' %}">이달의 사진</a></li>
+				<li><a href="{% url 'recommend' %}">추천여행지</a></li>
+				{% if not user.is_authenticated %}
+				<li><a href="{% url 'customer_login' %}">로그인/가입</a></li>
+				{% else %}
+				<li><a href="{% url 'mypage' user.id %}">마이페이지</a></li>
+				{% if user.is_writer%}
+				<li><a href="{% url 'upload' user.id %}">상품등록</a></li>
+				{% else %}
+				<li><a href="{% url 'enroll' user.id %}">작가 등록하기</a></li>
+				{% endif %}
+				<li>
+					<a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+					<form style="height: 100px;" id="logout" method="POST" action="{% url 'signout' %}">
+						{% csrf_token %} <input type="hidden" />
+					</form>
+				</li>
+				{% endif %}
 			</ul>
 		</nav>
 	</header>
@@ -82,11 +88,15 @@
 						<ul class="alt">
 							<ul class="alt">
 								<div><a href="" class="button alt" style="width: 100%;">예약상황</a></div>
-							<div><a href="{% url 'history' %}" class="button alt" style="width: 100%;">구매내역</a></div>
-							<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a></div>
-							<div><a href="{% url 'change_user' %}" class="button alt" style="width: 100%;">개인정보수정</a></div>
-							
-							<div><a href="{% url 'delete' user.id %}" class="button alt" style="width: 100%;"  onclick="return confirm('정말 계정을 삭제하시겠습니까?')">회원탈퇴</a></div>
+								<div><a href="{% url 'history' %}" class="button alt" style="width: 100%;">구매내역</a>
+								</div>
+								<div><a href="{% url 'favorite' %}" class="button alt" style="width: 100%;">관심작가</a>
+								</div>
+								<div><a href="{% url 'change_user' %}" class="button alt"
+										style="width: 100%;">개인정보수정</a></div>
+
+								<div><a href="{% url 'delete' user.id %}" class="button alt" style="width: 100%;"
+										onclick="return confirm('정말 계정을 삭제하시겠습니까?')">회원탈퇴</a></div>
 
 							</ul>
 						</ul>

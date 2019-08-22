@@ -71,14 +71,12 @@ def enroll(request, id):
         camera = request.POST["camera"]
         camera_image = request.FILES["camera_image"]
         writer_account =  get_object_or_404(User, pk=id, is_active=True)
-        writer_user = Writer.objects.create(introduce=introduce, profile_image=profile_image,
-            camera=camera, camera_image=camera_image,sns_email=sns_email, image=image)
-        writer_account.is_active = False
-        writer_account.writer = writer_user
+        writer_user = Writer.objects.create(userid=writer_account,introduce=introduce, profile_image=profile_image,
+            camera=camera, camera_image=camera_image,sns_email=sns_email, image=image,like=0)
+        writer_account.is_writer = True
         writer_account.save()
         # login(request,writer_account)
-    return redirect("home")
-
+        return redirect(reverse('home'))
     
 #로그아웃
 def signout(request):

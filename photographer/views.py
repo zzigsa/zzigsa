@@ -38,22 +38,29 @@ def like(request):
 
 
 # # 상품등록
-def upload(request):
+@login_required
+def upload(request, id):
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            product=form.save(commit=False)
-            product.user = request.user
-            product.save()
-            return redirect('home')
+        title = request.POST["title"]
+        summary = request.POST["summary"]
+        image = request.FILES["image"]
+        detail = request.POST["detail"]
+        options = request.POST["options"]
+        option_price = request.POST["option_price"]
+
+        writer_account =  get_object_or_404(Writer, userid=id)
+        product = ProductRegistration.objects.create(writerid=writer_account,title=title,summary=summary,image=image,detail=detail,options=options,option_price=option_price)
+
+        # login(request,writer_account)
+        return redirect(reverse('list'))
             # if product.writer != request.user.writer:
             #     return render(request,"upload.html" ,{"msg":"작가만 등록이 가능합니다."})
             # else:
             #     product.save()
             #     return redirect('home')
-    else:
-        form = UploadForm(request.POST, request.FILES)
-    return render(request, 'upload.html', {'form': form})
+    writer_account =  get_object_or_404(User, pk=id, is_active=True)
+    return render(request, "upload.html",{"writer_account":writer_account})
+    
 
     # if request.method == 'GET':
     #     return render(request, "upload.html")

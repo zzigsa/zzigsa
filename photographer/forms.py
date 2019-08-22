@@ -3,26 +3,26 @@ from photographer.models import ProductRegistration
 from first.models import Writer
 
 # 상품등록
-class UploadForm(forms.ModelForm):
-    class Meta:
-        model = ProductRegistration
-        fields = ['title', 'summary', 'image', 'detail', 'options', 'option_price']
-        widgets = {
-            'title': forms.TextInput(attrs={'class':'form-control'}),
-            'summary': forms.TextInput(attrs={'class':'form-control'}),
-            'image': forms.FileInput(attrs={'class':'form-group'}),
-            'detail': forms.Textarea(attrs={'class':'form-control'}),
-            'options': forms.TextInput(attrs={'class':'form-control'}),
-            'option_price': forms.NumberInput(attrs={'class':'form-control'}),
-        }
-        labels = {
-            'title': '상품 타이틀',
-            'summary': '상품 요약',
-            'image': '샘플 사진',
-            'detail': '상세 설명',
-            'options': '옵션 내용',
-            'option_price': '옵션가격',
-        }
+# class UploadForm(forms.ModelForm):
+#     class Meta:
+#         model = ProductRegistration
+#         fields = ['title', 'summary', 'image', 'detail', 'options', 'option_price']
+#         widgets = {
+#             'title': forms.TextInput(attrs={'class':'form-control'}),
+#             'summary': forms.TextInput(attrs={'class':'form-control'}),
+#             'image': forms.FileInput(attrs={'class':'form-group'}),
+#             'detail': forms.Textarea(attrs={'class':'form-control'}),
+#             'options': forms.TextInput(attrs={'class':'form-control'}),
+#             'option_price': forms.NumberInput(attrs={'class':'form-control'}),
+#         }
+#         labels = {
+#             'title': '상품 타이틀',
+#             'summary': '상품 요약',
+#             'image': '샘플 사진',
+#             'detail': '상세 설명',
+#             'options': '옵션 내용',
+#             'option_price': '옵션가격',
+#         }
 
 
 # 작가 관리
