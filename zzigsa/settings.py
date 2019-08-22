@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'first.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'haystack',
     'imagekit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -148,3 +149,13 @@ EMAIL_HOST_USER='tyyt0528@likelion.org'
 EMAIL_HOST_PASSWORD='wnsgml0528!'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
+
+# 검색기능
+WHOOSH_INDEX=os.path.join(BASE_DIR, 'whoosh_index')
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': WHOOSH_INDEX,
+    },
+}

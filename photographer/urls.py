@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .import views
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('list/',views.list, name="list"),
     # path('list/', views.upload, name="list"),
     path('photographeredit/', views.photographeredit, name="photographeredit"),
+    path('search/', include('haystack.urls')),
 ]
